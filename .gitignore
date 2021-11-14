@@ -1,0 +1,7 @@
+# LOAD BALANCER (DOCKER,NGINX,PHP)
+
+### Load balancer with Nginx and distribute the traffic load among several applications by using Docker containers
+
+
+### service-one is a php application
+### service-two is also a php application
