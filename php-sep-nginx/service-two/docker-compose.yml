@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: ShakilAhmmed
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: service-two
+    container_name: service-two-application
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - service-two-network
+  nginx:
+    image: nginx:alpine
+    container_name: service-two-nginx
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    volumes:
+      - ./:/var/www
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - service-two-network
+
+networks:
+  service-two-network:
+    driver: bridge
